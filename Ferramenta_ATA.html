@@ -1,0 +1,1034 @@
+<!--
+Programação:	F3879719 - Gustavo Mendes Belczak
+Textos:			F2258541 - Danielle Wagner Bernardi
+
+Versão: 2.2
+	- Adição de botões para gerar texto de bloqueio de conta com e sem processo ROI
+--> 
+
+<html>
+	<head>
+		<title>Ferramenta ATA</title>
+		<meta charset = "utf-8"/>
+		<link id = "link-estilo" 			rel = "stylesheet" type = "text/css" href = "css/ATA.css"/>
+		<link id = "link-estilo-principal"	rel = "stylesheet" type = "text/css" href = "css/style.css"/>
+		<link rel = "stylesheet" type = "text/css" href = "css/jquery.toast.min.css"/>
+		<script src = "js/jquery/jquery-3.3.1.min.js"></script>
+		<script src = "js/toast/dist/jquery.toast.min.js"></script>
+	</head>
+	<body>
+		<div id = "div-corpo">
+			
+
+			<!--DIV-TOPO-->
+			<div id = "div-topo" class = "centro">
+				<div id = "div-estilos" class = "centro cem">
+					<select id = "select-estilo" class = "centro cem">
+						<option id = "estilo-ATA"	value = "ATA.css">Dani</option>
+						<option id = "estilo-claro"		value = "claro.css">Claro</option>
+						<option id = "estilo-escuro"	value = "escuro.css">Escuro</option>
+						<option id = "estilo-bb"		value = "bb.css">BB</option>
+						<option id = "mace-windu"		value = "mace_windu.css">Mace Windu</option>
+					</select>
+				</div>
+				<div id = "div-titulo-principal">
+					<span id = "titulo-principal">Ferramenta ATA 1.0</span>
+				</div>
+
+				<div id = "div-sobre" class = "atendimento cem esquerda" hidden = "true">
+					<label class = "div-vinte">Programação:</label>	<label>F3879719 - Gustavo Mendes Belczak</label><br>
+					<label class = "div-vinte">Textos:</label>		<label>F2258541 - Danielle Wagner Bernardi</label><br>
+					<label class = "div-vinte">Release:</label>		<label>18/02/2022</label>
+				</div>
+
+				<div id = "div-data" class = "centro">
+					<label id = "lbl-data"></label>
+				</div>
+
+				<div id = "div-texto-plataforma">
+					<div class = "div-quinze"></div>
+					<div class = "div-setenta">
+						<textarea id = "texto-plataforma" class = "input cem" placeholder = "colar infos da plataforma"></textarea>
+					</div>
+					<div class = "div-quinze">
+						<button id = "btn-limpar" class = "cem">Limpar</button>
+					</div>
+				</div>
+
+				
+			</div>
+			
+			
+
+
+			<!--DADOS CLIENTE-->
+			<div id = "div-cliente">
+				<div class = "div-quinze">			<label id = "lbl-nome-cliente" class = "lbl-copy">Nome:</label></div>
+				<div class = "div-oitentaecinco">	<input id = "input-nome-cliente" class = "input cem" type = "text"/></div>
+				<div class = "div-quinze">			<label for = "agencia-cliente" id = "lbl-agencia-cliente">Agência:</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-agencia-cliente" class = "input noventa" type = "text"/></div>
+				<div class = "div-quinze direita">	<label id = "lbl-conta-cliente" class = "lbl-copy">Conta:</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-conta-cliente" class = "input cem" type = "text"/></div>
+				<div class = "div-quinze">			<label id = "lbl-cpf-cliente" class = "lbl-copy">CPF:</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-cpf-cliente" class = "input noventa" type = "text"></div>
+				<div class = "div-quinze direita">	<label id = "lbl-mci-cliente" class = "lbl-copy">MCI:</label></div>
+				<div class = "div-trintaecinco">	<input id = "input-mci-cliente" class = "input cem" type = "text"></div>
+
+				<label id = "lbl-horario-atendimento">Horário:</label>
+				<input id = "input-horario-atendimento-00" class = "input quinze" type = "text"/>
+				<span id = "span-novo-horario-atendimento"></span>
+				<button id = "btn-novo-horario" class = "dez">+</button>
+				<button id = "btn-excluir-horario" class = "dez">-</button>
+			</div>
+
+
+
+			<!--DIV ASSUNTO-->
+			<div id = "div-assunto">
+				<div class = "div-vinteecinco"><button id = "btn-assunto-outros" 	class = "btn-assunto cem">ATA</button></div>
+			</div>
+
+
+			<hr />
+			
+
+			<!--DIV ATENDIMENTO-->
+			<div id = "div-atendimento">
+				
+				
+
+
+
+				<!--DIV ATENDIMENTO ROI-->
+				<div id = "div-atendimento-roi" class = "atendimento">
+					<h3>ROI</h3>
+					<div id = "div-atendimento-roi-textos">
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-arquivo"			class = "btn-textos cem">Arquivo</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-plataforma"		class = "btn-textos cem">Plataforma</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-excel"			class = "btn-textos cem">Excel</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-parecer"			class = "btn-textos cem">Parecer</button></div>
+						<div class = "div-vinte"><button id = "btn-atendimento-roi-bloqueio-deb"	class = "btn-textos cem">Bloqueio</button></div>
+					</div>
+					<div id = "div-atendimento-roi-dados">
+						<table class = "cem">
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-numero-processo" class = "lbl-copy">ROI:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-numero-processo" class = "input cem" type = "text"/></td>
+								<td rowspan = "4"><div id = "div-atendimento-roi-chk-tipologias" hidden = "true"></div></td>
+							</tr>
+							<tr id = "tr-atendimento-roi-fone-00">
+								<td class = "dez"><label id = "lbl-atendimento-roi-fone-00" class = "lbl-copy">Fone:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-fone-00" class = "input cem" type = "text"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-valor" class = "lbl-copy">Valor:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-roi-valor" class = "input cem" type = "text"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-roi-select-tipologias" class = "lbl-copy">Parec:</label></td>
+								<td class = "quarenta"><select id = "input-atendimento-roi-select-tipologias" class = "select-tipologias cem roi input"></select></td>
+							</tr>
+						</table>
+						<div id = "div-atendimento-roi-bloqueio-deb" hidden = "true">
+							<h4>Bloqueio DEB</h4>
+							<label class = "div-dez">Valor:</label>
+							<input id = "input-atendimento-roi-bloqueio-deb-valor" class = "input trinta"/>
+							<br>
+							<label class = "div-dez">Data:</label>
+							<input id = "input-atendimento-roi-bloqueio-deb-data" class = "input trinta"/>
+							<br>
+							<button id = "btn-atendimento-roi-bloqueio-deb-gerar-texto" class = "div-quinze">OK</button>
+							<button id = "btn-atendimento-roi-bloqueio-deb-cancelar-texto" class = "div-quinze">Cancelar</button>
+						</div>
+					</div>
+				</div>
+				
+
+
+
+
+
+
+
+				<!--DIV ATENDIMENTO PRÉ-ROI-->
+				<div id = "div-atendimento-pre-roi" class = "atendimento">
+					<h3>Pré-ROI</h3>
+					<div id = "div-atendimento-pre-roi-textos">
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-arquivo">Arquivo</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-plataforma">Plataforma</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-excel">Excel</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-ares">ARES</button></div>
+						<div class = "div-vinte"><button class = "btn-textos cem" id = "btn-atendimento-pre-roi-bloqueio-deb">Bloqueio</button></div>
+					</div>
+					<div id = "div-atendimento-pre-roi-dados">
+						<table class = "cem">
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-numero-processo" class = "lbl-copy">ARES:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-pre-roi-numero-processo" class = "input cem"/></td>
+								<td rowspan = "4"><div id = "div-atendimento-pre-roi-chk-tipologias" hidden = "true"></div></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-fone" class = "lbl-copy">Fone:</label></td>
+								<td class = "quarenta"><input id = "input-atendimento-pre-roi-fone" class = "input cem"/></td>
+							</tr>
+							<tr>
+								<td class = "dez"><label id = "lbl-atendimento-pre-roi-select-tipologias" class = "lbl-copy">Parec:</label></td>
+								<td class = "quarenta"><select id = "input-atendimento-pre-roi-select-tipologias" class = "select-tipologias cem pre-roi input"></select></td>
+							</tr>
+							<tr>
+								<td class = "dez"></td>
+								<td class = "quarenta"></td>
+							</tr>
+						</table>
+						<div id = "div-atendimento-pre-roi-bloqueio-deb" hidden = "true">
+							<h4>Bloqueio DEB</h4>
+							<label class = "div-dez">Valor:</label>
+							<input id = "input-atendimento-pre-roi-bloqueio-deb-valor" class = "input trinta"/>
+							<br>
+							<label class = "div-dez">Data:</label>
+							<input id = "input-atendimento-pre-roi-bloqueio-deb-data" class = "input trinta"/>
+							<br>
+							<button id = "btn-atendimento-pre-roi-bloqueio-deb-gerar-texto" class = "div-quinze">OK</button>
+							<button id = "btn-atendimento-pre-roi-bloqueio-deb-cancelar-texto" class = "div-quinze">Cancelar</button>
+						</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+				<!--DIV ATENDIMENTO OUTROS-->
+				<div id = "div-atendimento-outros" class = "atendimento">
+					<h3>ATA</h3>
+					<div id = "div-atendimento-outros-textos">
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-outros-arquivo"	class = "btn-textos cem">Arquivo</button></div>
+						<div class = "div-vinteecinco"><button id = "btn-atendimento-outros-plataforma"	class = "btn-textos cem">Plataforma</button></div>
+					</div>
+				</div>
+
+
+
+
+				<div id = "div-observacoes">
+					<textarea id = "observacoes" class = "input"></textarea>
+				</div>
+			</div><!--FIM DIV ATENDIMENTOS-->
+
+			
+
+
+			<!--DIV VERIFICAÇÕES DE SEGURANÇA-->
+			<button id = "btn-verificacoes-seguranca" class = "cem">Identificação Positiva</button>
+			<div id = "div-verificacoes-seguranca" class = "atendimento">
+				<table class = "cem">
+
+					<tr>
+						<td>								<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-ato" 					value = "Nome completo"/>						<label for = "chk-verificar-seguranca-ato">Nome completo</label>					</td>
+						<td>								<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-bb-code"				value = "Data de nascimento"/>					<label for = "chk-verificar-seguranca-bb-code">Data de nascimento</label>				</td>
+					</tr>
+					<tr>
+						<td>								<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-biometria"				value = "Cidade em que nasceu"/>				<label for = "chk-verificar-seguranca-biometria">Cidade em que nasceu</label>				</td>
+						<td>								<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-cdc"					value = "Nome completo da mãe"/>						<label for = "chk-verificar-seguranca-cdc">Nome completo da mãe</label>					</td>
+					</tr>
+					<tr>
+						<td>								<input type = "checkbox" class = "chk-verificar-seguranca" id = "chk-verificar-seguranca-cheque"				value = "Idade"/>					<label for = "chk-verificar-seguranca-cheque">Idade</label>					</td>
+						</tr>
+
+				</table>
+			</div>
+
+
+			<!--DIV MENSAGENS-->
+			<div id = "div-mensagens">
+				<textarea id = "mensagens"></textarea>
+			</div> 
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+
+			alertaCDC = false;
+			navegador_atualizado = getVersaoNavegador();
+			verificarEstilo();
+			limparConteudo();
+			carregarTipologias();
+			carregarData();
+			$('.atendimento').hide();
+				
+			//ALTERAR ESTILO
+			$('#select-estilo').change(function(){
+				estilo = this.value;
+				$('head').children('#link-estilo')[0].outerHTML = '<link id = "link-estilo" rel = "stylesheet" type = "text/css" href = "css/'+ estilo +'">';
+			});
+
+			//MOSTRAR / ESCONDER INFORMAÇÕES DA FERRAMENTA
+			$('#titulo-principal').click(function(){
+				$('#div-sobre').toggle('slow');
+			});
+
+			
+			//LIMPAR TODO O CONTEÚDO
+			$('#btn-limpar').click(function(){
+				limparConteudo();
+			});
+
+			
+			//INSERIR CAMPO PARA INSERIR MAIS HORÁRIOS DE LIGAÇÃO (+ 3 NO MÁXIMO)
+			$('#btn-novo-horario').click(function(){
+				id_horario = $('#span-novo-horario-atendimento').children().length + 1;
+				if(id_horario <= 3){
+					html = '<input id = "input-horario-atendimento-0' + id_horario + '" class = "input quinze" type = "text" hidden = "true"/></div>';
+					$('#span-novo-horario-atendimento').append(html);
+					horario = new Date();
+					h = ('0'+horario.getHours()).slice(-2);
+					m = ('0'+horario.getMinutes()).slice(-2);
+					$('#input-horario-atendimento-0' + id_horario).val(h + 'h' + m);
+					$('#input-horario-atendimento-0' + id_horario).show('fast');
+
+
+					//Inserir novo campo para o número de telefone
+					html = '';
+					html += '<tr id = "tr-atendimento-roi-fone-0' + id_horario + '" class = "atendimento-novos-fones" hidden = "true">';
+						html += '<td class = "dez">';
+							html += '<label id = "lbl-atendimento-roi-fone-0' + id_horario + '" class = "lbl-copy">Fone:</label>';
+						html += '</td>';
+						html += '<td class = "quarenta">';
+							html += '<input id = "input-atendimento-roi-fone-0' + id_horario + '" class = "input cem" type = "text" value = "' + $('#input-atendimento-roi-fone-0' + (id_horario - 1)).val() + '"/>';
+						html += '</td>';
+					html += '</tr>';
+					$('#tr-atendimento-roi-fone-0' + (id_horario-1)).after(html);
+					$('#tr-atendimento-roi-fone-0' + id_horario).show('slow');
+				}else{
+					toastAmarelo('Número máximo de horários atingido','');
+				}
+			});
+
+			//EXCLUIR HORÁRIO/FONE NOVO
+			$('#btn-excluir-horario').click(function(){
+				aux = $('#span-novo-horario-atendimento').children();
+				if(aux.length > 0){
+					$('#input-horario-atendimento-0' + aux.length).hide('fast');
+					$('#tr-atendimento-roi-fone-0' + aux.length).hide('slow');
+					setTimeout(function(){
+						$('#input-horario-atendimento-0' + aux.length).remove();
+						$('#tr-atendimento-roi-fone-0' + aux.length).remove();
+					}, '100');
+				}
+			});
+
+
+
+			//INCLUIR LINK PARA PROCURAR AGÊNCIA NO HUMANOGRAMA
+			$('#lbl-agencia-cliente').click(function(){
+				agencia = $('#input-agencia-cliente').val().split('-')[0];
+				link = 'https://humanograma.intranet.bb.com.br/busca?consulta=' + agencia;
+				window.open(link, '', 'width = 1200, height = 800, scrollbars = yes', '_blank');
+			});
+
+			
+
+			//CHAMAR A FUNÇÃO QUE SEPARAR AS INFORMAÇÕES NA STRING COLADA DA PLATAFORMA
+			//setTimeOut() UTILIZADO PARA DAR TEMPO DAS INFORMAÇÕES SEREM COLADAS ANTES DO SCRIPT ATUAR
+			$('#texto-plataforma').on('paste', function(){
+				limparConteudo();
+				setTimeout(separarInfos, 10);
+			});
+			
+			
+
+			//Evento de click nos botões relacionados ao assunto do atendimento
+			//Mostrar a div-atendimento relacionada ao botão clicado
+			$('.btn-assunto').click(function(){
+				div_atendimento = this.id;
+				div_atendimento = div_atendimento.replace('btn-assunto','div-atendimento');
+				$('.atendimento').hide('slow');
+				$('.select-tipologias').val('0');
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('#div-observacoes').show();
+				$('#' + div_atendimento).show('slow');
+
+				if(div_atendimento == 'div-atendimento-pre-roi'){
+					$('#div-verificacoes-seguranca').show('slow');
+				}
+				
+
+				$('.btn-assunto').removeClass('btn-atendimento-ativo');
+				$('.btn-assunto').addClass('btn-atendimento-inativo');
+				$(this).addClass('btn-atendimento-ativo');
+				$(this).removeClass('btn-atendimento-inativo');				
+			});
+
+
+			
+
+			/*BLOCO PARA GERAR TEXTOS****************************************************************/
+			
+			//---------------ATENDIMENTO OUTROS--------------------
+			//ATENDIMENTO-OUTROS: GERAR TEXTO PARA ARQUIVO
+			$('#btn-atendimento-outros-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	' + $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		' + $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' + $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' + $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' + $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' + $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += 'Assunto:	ATA';
+				if($('#observacoes').val().length > 0){
+					texto_arquivo += '\n';
+				}
+				texto_arquivo += $('#observacoes').val() + '\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-OUTROS: GERAR TEXTO PARA PLATAFORMA
+			$('#btn-atendimento-outros-plataforma').click(function(){
+				texto_plataforma = 'CRBB SJP - ' + $('#observacoes').val();
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+
+
+
+			
+			//---------------ATENDIMENTO ROI--------------------
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA ARQUIVO
+			$('#btn-atendimento-roi-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	'	+ $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		'	+ $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' 	+ $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' 	+ $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' 	+ $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' 	+ $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += '======================================\n';
+				texto_arquivo += 'ROI:		' 	+ $('#input-atendimento-roi-numero-processo').val() + '\n';
+				texto_arquivo += 'Fone:		' 	+ $('#input-atendimento-roi-fone-00').val() + '\n';
+				texto_arquivo += 'Valor:		' 	+ $('#input-atendimento-roi-valor').val() + '\n';
+				texto_arquivo += 'Parecer:\n' 	+ $('#observacoes').val() + '\n';
+				texto_arquivo += '======================================\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA PLATAFORMA
+			$('#btn-atendimento-roi-plataforma').click(function(){
+				texto_plataforma = 'CRBB SJP - Equipe ROI - Abertura de ROI, processo nº ' + $('#input-atendimento-roi-numero-processo').val() + '. ';
+				if(alertaCDC){
+					texto_plataforma += 'Fraude com contratação de CDC, cliente orientado a manter valor em conta em caso de estorno para cancelamento da operação.';
+				}
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA EXCEL
+			$('#btn-atendimento-roi-excel').click(function(){
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				tipo = 'ROI';
+				numero_processo = $('#input-atendimento-roi-numero-processo').val();
+				sms = verificarSMS();
+				if(sms != ''){
+					sms = 1;
+				}else{
+					sms = 0;
+				}
+				texto_excel = mci + '\t' + cliente + '\t' + tipo + '\t' + numero_processo + '\t' + sms;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA PARECER
+			$('#btn-atendimento-roi-parecer').click(function(){
+				arr = $('#span-novo-horario-atendimento').children();
+				outros_horarios = Array();
+				for(i = 0; i < arr.length; i++){
+					outros_horarios.push(arr[i].value);
+				}
+				arr = Array();
+				arr = $('.atendimento-novos-fones');
+				outros_fones = Array();
+				for(i = 0; i < arr.length; i++){
+					aux = $(arr[i]).children().children();
+					outros_fones.push(aux[1].value);
+				}
+
+				outros_atendimentos = Array();
+				for(i = 0; i < arr.length; i++){
+					outros_atendimentos += '\nID CRBB - (' + outros_fones[i] + ') - ' + outros_horarios[i] + ' - Novo contato';
+				}
+				
+				id_crbb = '';
+				id_crbb += '\n================================\n';
+				id_crbb += 'ID CRBB - (' + $('#input-atendimento-roi-fone-00').val() + ') - ';
+				id_crbb += $('#input-horario-atendimento-00').val();
+				id_crbb += outros_atendimentos;
+				id_crbb += '\n================================';
+				
+				texto_parecer = '';
+				texto_parecer += $('#observacoes').val();
+				texto_parecer += id_crbb;
+				gerarTexto(texto_parecer);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para o parecer gerado', 'gerar_texto');
+			});
+			
+			//ATENDIMENTO-ROI: GERAR TEXTO PARA BLOQUEIO DE CONTAS
+			$('#btn-atendimento-roi-bloqueio-deb').click(function(){
+				$('#div-atendimento-roi-bloqueio-deb').toggle('slow');
+			});
+			$('#btn-atendimento-roi-bloqueio-deb-cancelar-texto').click(function(){
+				$('#div-atendimento-roi-bloqueio-deb').hide('slow');
+			});
+			$('#btn-atendimento-roi-bloqueio-deb-gerar-texto').click(function(){
+				valor = $('#input-atendimento-roi-bloqueio-deb-valor').val();
+				data = $('#input-atendimento-roi-bloqueio-deb-data').val();
+				mci = $('#input-mci-cliente').val();
+				roi = $('#input-atendimento-roi-numero-processo').val();
+				verifica = '';
+				if(valor.trim() == ''){
+					verifica += '<b><u>VALOR</u></b> '
+				}
+				if(data.trim() == ''){
+					verifica += '<b><u>DATA</u></b> '
+				}
+				if(mci.trim() == ''){
+					verifica += '<b><u>MCI</u></b> '
+				}
+				if(roi.trim() == ''){
+					verifica += '<b><u>ROI</u></b> '
+				}
+
+				if(verifica == ''){
+					texto_deb = 'Cliente MCI ' + mci +  ' contesta transferência a favor do titular na data de ' + data +  ', valor de R$ ' + valor +  ', conforme processo ROI ' + roi +  '. Proceder conforme in 645-2, item 22.1.';
+					gerarTexto(texto_deb);
+					$('#btn-atendimento-roi-bloqueio-deb').removeClass('btn-textos-a-fazer');
+					$('#btn-atendimento-roi-bloqueio-deb').addClass('btn-textos-feito');
+					toastVerde('Texto para bloqueio DEB gerado', 'gerar_texto');
+				}else{
+					toastAmarelo('Atenção! Faltou preencher os seguintes campos: ' + verifica);
+				}
+				
+				
+			});
+			
+			//---------------ATENDIMENTO PRÉ-ROI--------------------
+			//ATENDIMENTO-PRE-ROI ARQUIVO
+			$('#btn-atendimento-pre-roi-arquivo').click(function(){
+				sms = verificarSMS();
+				texto_arquivo = '\n';
+				texto_arquivo += 'Horário:	'		+ $('#input-horario-atendimento-00').val() + '\n';
+				texto_arquivo += 'Nome:		'		+ $('#input-nome-cliente').val() + '\n';
+				texto_arquivo += 'Agência:	' 		+ $('#input-agencia-cliente').val().trim() + '\n';
+				texto_arquivo += 'Conta:		' 	+ $('#input-conta-cliente').val() + '\n';
+				texto_arquivo += 'CPF:		' 		+ $('#input-cpf-cliente').val() + '\n';
+				texto_arquivo += 'MCI:		' 		+ $('#input-mci-cliente').val() + '\n';
+				texto_arquivo += sms;
+				texto_arquivo += '======================================\n';
+				texto_arquivo += 'ARES:		'		+ $('#input-atendimento-pre-roi-numero-processo').val() + '\n';
+				texto_arquivo += 'Fone:		'		+ $('#input-atendimento-pre-roi-fone').val() + '\n';
+				texto_arquivo += 'Parecer:\n'		+ $('#observacoes').val();
+				texto_arquivo += '\n======================================\n\n\n\n';
+				gerarTexto(texto_arquivo);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para arquivo gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI PLATAFORMA
+			$('#btn-atendimento-pre-roi-plataforma').click(function(){
+				arr = $('.chk-verificar-seguranca');
+				aux = '';
+				verificacoes = '';
+				for(i = 0; i < arr.length; i++){
+					if($(arr[i]).prop('checked')){
+						aux += arr[i].id.replace('chk-verificar-seguranca-','') + ' / ';
+					}
+				}
+				if(aux.length > 0){
+					verificacoes = '\n-Identificação Positiva: ' + aux;
+					verificacoes = verificacoes.slice(0, verificacoes.length - 3);
+				}
+				
+				texto_plataforma = 'CRBB SJP - Atendimento Pré-ROI.\n';
+				texto_plataforma += $('#observacoes').val();
+				texto_plataforma += verificacoes;
+				gerarTexto(texto_plataforma);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para plataforma gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI EXCEL
+			$('#btn-atendimento-pre-roi-excel').click(function(){
+				sms = verificarSMS();
+				if(sms.length > 0){
+					sms = 1;
+				}else{
+					sms = 0;
+				}
+				mci = $('#input-mci-cliente').val();
+				cliente = $('#input-nome-cliente').val();
+				tipo = 'ARES';
+				numero_processo = $('#input-atendimento-pre-roi-numero-processo').val();
+				texto_excel = mci + '\t' + cliente + '\t' + tipo + '\t' + numero_processo + '\t' + sms;
+				gerarTexto(texto_excel);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Registro para Excel gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI ARES
+			$('#btn-atendimento-pre-roi-ares').click(function(){
+				arr = $('.chk-verificar-seguranca');
+				aux = '';
+				verificacoes = '';
+				for(i = 0; i < arr.length; i++){
+					if($(arr[i]).prop('checked')){
+						aux += arr[i].id.replace('chk-verificar-seguranca-','') + ' / ';
+					}
+				}
+				if(aux.length > 0){
+					verificacoes = '\n-Identificação Positiva: ' + aux;
+					verificacoes = verificacoes.slice(0, verificacoes.length - 3);
+				}
+				
+				texto_ares = 'CRBB SJP - Atendimento Pré-ROI.\n';
+				texto_ares += $('#observacoes').val();
+				texto_ares += verificacoes;
+				gerarTexto(texto_ares);
+				$(this).removeClass('btn-textos-a-fazer');
+				$(this).addClass('btn-textos-feito');
+				toastVerde('Texto para ficha ARES gerado', 'gerar_texto');
+			});
+			//ATENDIMENTO-PRE-ROI: GERAR TEXTO PARA BLOQUEIO DE CONTAS
+			$('#btn-atendimento-pre-roi-bloqueio-deb').click(function(){
+				$('#div-atendimento-pre-roi-bloqueio-deb').toggle('slow');
+			});
+			$('#btn-atendimento-pre-roi-bloqueio-deb-cancelar-texto').click(function(){
+				$('#div-atendimento-pre-roi-bloqueio-deb').hide('slow');
+			});
+			$('#btn-atendimento-pre-roi-bloqueio-deb-gerar-texto').click(function(){
+				valor = $('#input-atendimento-pre-roi-bloqueio-deb-valor').val();
+				data = $('#input-atendimento-pre-roi-bloqueio-deb-data').val();
+				mci = $('#input-mci-cliente').val();
+				verifica = '';
+				if(valor.trim() == ''){
+					verifica += '<b><u>VALOR</u></b> '
+				}
+				if(data.trim() == ''){
+					verifica += '<b><u>DATA</u></b> '
+				}
+				if(mci.trim() == ''){
+					verifica += '<b><u>MCI</u></b> '
+				}
+
+				if(verifica == ''){
+					texto_deb = 'Cliente MCI ' + mci + ' contesta transferência a favor do titular na data de ' + data + ', valor de R$ ' + valor + '. Proceder conforme in 645-2, item item 22.1.';
+					gerarTexto(texto_deb);
+					$('#btn-atendimento-pre-roi-bloqueio-deb').removeClass('btn-textos-a-fazer');
+					$('#btn-atendimento-pre-roi-bloqueio-deb').addClass('btn-textos-feito');
+					toastVerde('Texto para bloqueio DEB gerado', 'gerar_texto');
+				}else{
+					toastAmarelo('Atenção! Faltou preencher os seguintes campos: ' + verifica);
+				}
+
+				
+			});
+
+			//FIM BLOCO GERAR TEXTOS*****************************************************************/
+
+
+
+
+
+
+
+			
+			
+			//ATENDIMENTO-TEXTOS-TIPOLOGIAS*****************************************************************
+			//CARREGAS AS TIPOLOGIAS NO DROPDOWN DO PARECER
+			function carregarTipologias(){
+				arr = $('.chk-tipologia');
+				tipologias = Array();
+				for(i = 0; i < arr.length; i++){
+					aux = $(arr[i]).attr('class').replace('chk-tipologia-', '');
+					aux = aux.replace(' chk-tipologia','');
+
+					if($.inArray(aux, tipologias) == -1){
+						tipologias.push(aux)
+					}
+				}
+
+				html = '<option class = "select-tipologia" value = "0">--</option>';
+				for(i = 0; i < tipologias.length; i++){
+					html += '<option class = "select-tipologia-' + tipologias[i] + ' select-tipologia" value = ' + tipologias[i] + '>' + tipologias[i].replace('-', ' ') + '</option>';
+				}
+				$('#input-atendimento-roi-select-tipologias').html(html);
+				$('#input-atendimento-pre-roi-select-tipologias').html(html);
+			}
+
+			//CARREGAR OS TEXTOS DA TIPOLOGIA SELECIONADA NO LADO DIREITO DOS DADOS
+			$('.select-tipologia').click(function(){
+				$('#div-atendimento-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+				
+				
+				
+				tipologia = this.value;
+				
+				arr = $('.chk-tipologia-' + this.value);
+				html = '';
+				for (i = 0; i < arr.length; i++){
+					arr[i].id = 'chk-tipologia-' + tipologia + '-' + i;
+					html += arr[i].outerHTML + '<label for = "' + arr[i].id + '">' + arr[i].name + '</label><br>';
+				}
+
+				if(arr.length == 0 && $('#div-atendimento-roi').is(':visible')){
+					$('#div-atendimento-roi-chk-tipologias').hide('slow');
+					$('#div-atendimento-roi-chk-tipologias').children().remove();
+				}
+
+				if(arr.length == 0 && $('#div-atendimento-pre-roi').is(':visible')){
+					$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+					$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				}
+				if($('#div-atendimento-roi').is(':visible')){
+					$('#div-atendimento-roi-chk-tipologias').html(html);
+					$('#div-atendimento-roi-chk-tipologias').show('slow');
+				}
+				if($('#div-atendimento-pre-roi').is(':visible')){
+					$('#div-atendimento-pre-roi-chk-tipologias').html(html);
+					$('#div-atendimento-pre-roi-chk-tipologias').show('slow');
+				}
+				
+			});
+			//ATUALIZAR AS OBSERVAÇÕES COM O TEXTO SELECIONADO
+			$(document).on ('click', '.chk-tipologia', function(){
+				if($(this).prop('checked')){
+					if($('#observacoes').val() != ''){
+						obs = $('#observacoes').val() + '\n';
+					}else{
+						obs = $('#observacoes').val();
+					}
+					obs += $('#' + this.id).val();
+					$('#observacoes').val(obs);
+
+					if($(this).val().indexOf('CDC') != -1){
+						alertaCDC = true
+						toastVermelho('Inserir CDC no processo!');
+					}
+				}
+			});
+			//FIM-ATENDIMENTO-TEXTOS-TIPOLOGIAS*************************************************************
+
+
+
+			//MOSTRAR / ESCONDER DIV TERMO DE COMPROMISSO
+			$('#btn-termo-compromisso').click(function(){
+				$('#div-termo-compromisso').toggle('slow');
+			});
+
+			//MOSTRAR / ESCONDER DIV VERIFICAÇÕES DE SEGURANÇA
+			$('#btn-verificacoes-seguranca').click(function(){
+				$('#div-verificacoes-seguranca').toggle('slow');
+			});
+			//MARCAR TODAS AS VERIFICAÇÕES DE SEGURANÇA
+			$('#chk-verificar-seguranca-todos').click (function(){
+				seleciona = $(this).prop('checked');
+				$('.chk-verificar-seguranca:checkbox').prop('checked', seleciona);
+			});
+
+			
+
+	
+			//COPIAR AS INFORMAÇÕES DO CAMPO QUANDO CLICAR NO LABEL
+			$(document).on('click', '.lbl-copy', function(){
+				id_input = this.id.replace('lbl', 'input');
+				value = $('#' + id_input).val();
+				if(id_input.indexOf('select-tipologias') != -1){
+					$('#mensagens').val(value);
+					$('#mensagens').select();
+					document.execCommand('copy');
+				}else if(id_input.indexOf('cpf') != -1){
+					$('#mensagens').val($('#input-cpf-cliente').val().replace(/\./g, '').replace('-', ''));
+					$('#mensagens').select();
+					document.execCommand('copy');
+
+				}else{
+					$('#' + id_input).select();
+					document.execCommand('copy');
+					$('#mensagens').select();
+				}
+
+				if($('#' + id_input).val() != ''){
+					toastVerde('Informação copiada!');
+				}
+			});
+			
+			
+
+			//********************FUNÇÕES************************
+			
+
+			//VERIFICAR VERSÃO DO NAVEGADOR PARA EVITAR CONFLITOS COM AS VERSÕES ANTIGAS DO MOZILLA, QUE NÃO ACEITAM CTRL+C AUTOMÁTICO DE CONTEÚDO HTML
+			function getVersaoNavegador(){
+				versao_navegador = navigator.userAgent;
+				//versao_navegador = '38';
+				versao_navegador = versao_navegador.substr(versao_navegador.length-4);
+				versao_navegador = parseFloat(versao_navegador);
+				if(versao_navegador < 52){
+					return false;
+				}
+				return true;
+			}
+
+			//CARREGAR O SELECT DE ESTILO COM O ESTILO SELECIONADO NO <HEAD>
+			function verificarEstilo(){
+				aux = $('#link-estilo')[0].href;
+				aux = aux.split('css/')[1];
+				$('#select-estilo option[value = "' + aux + '"]').prop('selected', true);
+			}
+
+			function limparConteudo(){
+				alertaCDC = false;
+				$('.atendimento').hide('slow');
+			
+				$('.input').val('');
+				$('#mensagens').val('');
+				$('.input-radio').prop('checked', false);
+				$('input:checkbox').prop('checked', false);
+				$('#div-atendimento-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-pre-roi-chk-tipologias').hide('slow');
+				$('#div-atendimento-roi-chk-tipologias').children().remove();
+				$('#div-atendimento-pre-roi-chk-tipologias').children().remove();
+				$('.btn-assunto').removeClass('btn-atendimento-ativo');
+				$('.btn-assunto').addClass('btn-atendimento-inativo');
+				$('.btn-textos').removeClass('btn-textos-feito');
+				$('#btn-assunto-outros').removeClass('btn-atendimento-inativo');
+				$('#btn-assunto-outros').addClass('btn-atendimento-ativo');
+				$('#div-atendimento-outros').show('slow');
+				$('#span-novo-horario-atendimento').children().hide('slow');
+				$('#div-atendimento-roi-bloqueio-deb').hide('slow');
+				$('#div-atendimento-pre-roi-bloqueio-deb').hide('slow');
+				setTimeout(function(){
+					$('#span-novo-horario-atendimento').children().remove();
+					$('.atendimento-novos-fones').remove();
+				}, '1000');
+
+				
+				
+			}
+
+			//ADICIONAR INFORMAÇÃO DE SMS VENDIDO NOS TEXTOS GERADOS
+			function verificarSMS(){
+				sms = '';
+				if($('#chk-venda-sms').prop('checked')){
+					sms = 'SMS Vendido\n';
+				}
+				return sms;
+			}
+
+			//SEPARAR AS INFORMAÇÕES DO CLIENTE CAPTURADAS DA PLATAFORMA
+			function separarInfos(){
+				nome = '';
+				agencia = '';
+				conta = '';
+				cpf = '';
+				mci = '';
+
+				string = $('#texto-plataforma').val();
+				string = string.split('\n');
+
+				nome = string[1];
+				mci = string[string.length - 2];
+				
+				for(i = 0; i < string.length; i++){
+					if(string[i].indexOf('Ag  ') != -1){
+						aux = string[i].split('Conta');
+						conta = aux[1].trim();
+						agencia = aux[0];
+						agencia = agencia.replace('Ag','').trim();
+					}
+					if(string[i].indexOf('CPF') != -1){
+						cpf = string[i].replace('CPF', '').trim();
+					}
+				}
+
+				$('#input-nome-cliente').val(nome);
+				$('#input-mci-cliente').val(mci);
+				$('#input-cpf-cliente').val(cpf);
+				$('#input-conta-cliente').val(conta);
+				$('#input-agencia-cliente').val(agencia);
+
+				horario = new Date();
+				h = ('0'+horario.getHours()).slice(-2);
+				m = ('0'+horario.getMinutes()).slice(-2);
+				$('#input-horario-atendimento-00').val(h + 'h' + m);	
+
+				$('#texto-plataforma').val('');
+			}
+
+
+			//GERAR TEXTOS NA TEXTAREA #mensagens PARA CTRL+C
+			function gerarTexto(texto){
+				$('#mensagens').val(texto);
+				$('#mensagens').select();
+				if(navegador_atualizado){
+					document.execCommand('copy');
+				}
+			}
+
+			//DATA DE HOJE
+			function carregarData(){
+				date = new Date();
+				dia_mes = date.getDate();
+				mes = date.getMonth() + 1;
+				ano = date.getFullYear();
+
+				if(dia_mes < 10){
+					dia_mes = '0' + dia_mes;
+				}
+				if(mes < 10){
+					mes = '0' + mes;
+				}
+				data = dia_mes + ' / ' + mes + ' / ' + ano;
+
+				dia_semana = date.getDay();
+				arr = ['S', 'T', 'Q', 'Q', 'S'];
+				semana = '';
+				for (i = 0; i < arr.length; i++){
+					if(i == dia_semana - 1){
+						semana += '<span class = "semana-ativa">' + arr[i] + '</span>';
+					}else{
+						semana += '<span class = "semana-inativa">' + arr[i] + '</span>';
+					}
+				}
+
+				setInterval(function(){
+					date = new Date();
+					aux = date.toString().split('GMT')[0];
+					aux = aux.split(' ');
+					horario = aux[4];
+					$('#lbl-data').html(semana + ' . ' + data + ' . ' + horario);
+				}, '1000');
+				
+			}
+
+			
+			/*BLOCO PARA GERAR MENSAGENS TOAST (POP-UP)**************************************************************/
+			function toastVerde(mensagem, tipo){
+				if(navegador_atualizado && tipo == 'gerar_texto'){
+					mensagem += ' e copiado!';
+				}else if(!navegador_atualizado && tipo == 'gerar_texto'){
+					mensagem += ' (<b>Necessário Ctrl+C</b>)';
+				}
+
+				$.toast({
+						text: mensagem,
+						icon: 'success',
+						position: 'top-left',
+						showHideTransition: 'slide'
+				});
+			}
+			function toastVermelho(mensagem){
+				$.toast({
+					text: mensagem,
+					icon: 'warning',
+					position: 'top-left',
+					showHideTransition: 'slide',
+					bgColor : '#cc0000',
+					hideAfter: false,
+					allowToastClose: true,
+				});
+			}
+
+			function toastAmarelo(mensagem){
+				$.toast({
+					text: mensagem,
+						icon: 'warning',
+						position: 'top-left',
+						showHideTransition: 'slide',
+						bgColor: '#ffa31a',
+						loaderBg: '#ff8533',
+				});
+			}
+			/*FIM BLOCO PARA GERAR MENSAGENS TOAST (POP-UP)**************************************************************/
+				
+		});
+	</script>
+
+
+	<div id = "div-checkboxes-tipologias" class = "atendimento">
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "D+0" 					value = "* Transações em D + 0"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Não Disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "CDC" 					value = "- Não reconhece CDC contrato nº 000"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Posse" 					value = "- Está de posse do cartão nº 0000, bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Sem Chip" 				value = "- Cartão sem chip"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Fragilidade" 			value = "- Não relata nenhuma outra situação que possa ter resultado em fragilidade das informações bancárias"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Bloqueio Senhas" 		value = "- Senha de 6 dígitos bloqueada, código de acesso inativo"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Cheque Especial" 		value = "- Utilização de cheque especial, gerando juros e IOF em conta"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Investimento" 			value = "- Resgate de investimento"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Poupança (inexistente)" 			value = "- Conta poupança inexistente na data das verificações de segurança (00/00)"/>
+		<input type = "checkbox" 	class = "chk-tipologia-1-Cartão-Sem-Chip chk-tipologia" name = "Verificações" 			value = "Verificações Pré-ROI efetuadas: Senhas / Biometria / RME / ATO / Cheques Emitidos - TAA / Cartão (inclusive Ourocard-E)/ Contas destino de transferência / CDC / Transações agendadas / Endereço/ Poupança / BB Code."/>
+
+	
+		
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "D+0" 					value = "* Transações em D + 0"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Não Disponível" 		value = "* Transações não disponíveis na base de dados do cartão"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Cliente informa que:" 	value = "Cliente informa que:"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Saque" 					value = "- Não reconhece saque de benefício em 00/00"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Posse cartão" 			value = "- Está de posse do cartão 0000, bloqueado"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Bloqueio Senha" 		value = "- Senha de 6 dígitos bloqueada pelo aplicativo ROI	"/>
+		<input type = "checkbox" 	class = "chk-tipologia-Benefício chk-tipologia" name = "Verificações" 			value = " Verificações Pré-ROI efetuadas: Cartão / Endereço."/>		
+		
+		
+		
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "D+0" 						value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada devido ao prazo D+0. Cliente orientado(a) a retornar contato no dia seguinte."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "D+0 (cartão)" 				value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada devido ao prazo D+0. Cliente orientado(a) a retornar contato após dois dias devido a natureza da transação."/>		
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Não Disponível" 				value = "CRBB SJP - Equipe ROI - Abertura de ROI impossibilitada - transações não estão disponíveis na base de dados. Cliente orientado(a) a retornar contato no dia seguinte."/>			
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Carteira bB" 			value = "CRBB SJP - Equipe ROI - Cliente desconhece carteira bB. Efetuado bloqueio no DEB. Cliente encaminhada para o portal do BB (bb.com.br/ajuda) para efetuar contestação de falsidade ideológica seguindo a notícia publicada em 23/11 na AGN.."/>			
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Procurador" 					value = "CRBB SJP - Equipe ROI - Procurador(a) deseja abrir processo de contestação. Procedimento não pode ser realizado pela CRBB conforme IN 645"/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Contestação Crédito" 		value = "CRBB SJP - Equipe ROI - Cliente necessita realizar contestação no cartão de crédito. Cartão bloqueado 205. Encaminhado(a) a CECAR."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Contestação Crédito - ECT" 		value = "CRBB SJP - Equipe ROI - Cliente necessita realizar contestação no cartão de crédito. Encaminhado(a) a agência pois compras foram realizadas de maneira presencial (cartão extraviado) e senhas estão bloqueadas, impedindo atendimento pela CECAR."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Compra cancelada" 			value = "CRBB SJP - Equipe ROI - Cliente deseja consultar contestação de compra cancelada. Encaminhado(a) a CECAR."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Sustação Cheque" 			value = "CRBB SJP - Equipe ROI - Cliente deseja sustar folha de cheque, não vinculado à contestação de fraude. Orientado(a) aos canais de autoatendimento ou à agência."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Motoboy interrompido" 		value = "CRBB SJP - Equipe ROI - Cliente recebeu contato de suposto setor de segurança afirmando que seu cartão estava sendo utilizado em fraude. Não foi localizado registro de contato ou da transação. Possível abordagem de fraude. Cliente orientado(a) a não informar senhas ou entregar cartões a terceiros."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Compra-DBT" 					value = "CRBB SJP - Equipe ROI - Cliente questiona compra-DBT em 00/00. Transação original aconteceu em 00/00, sendo estornada em 00/00. Não se trata de fraude. Transação esclarecida."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Cielo" 						value = "CRBB SJP - Equipe ROI - Cliente não reconhece débito autorizado em 00/00, verificado que está vinculado à antecipação de crédito lojista, repassado telefone da Cielo."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "PJ" 							value = "CRBB SJP - Equipe ROI - Cliente gostaria de realizar contestação de transação em conta PJ. Conforme IN 645, CRBB só faz esse procedimento para PF. Cliente encaminhado(a) à agência."/>	
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Boleto Falso" 				value = "CRBB SJP - Equipe ROI - Cliente necessita realizar contestação relacionada a boleto falso. Conforme IN 645 (2.6.2.1. ) a CRBB não abre ROI nessas situações."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Bloqueio DISIN" 				value = "CRBB SJP - Equipe ROI - Conta da cliente está com bloqueio preventivo efetuado pela DISIN. Para desbloquear é necessária a intervenção da agência. Para maiores informações verificar acesso DEB 01 - 01 agê e conta - 01 - selecionar bloqueio - F2."/>		
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Reconhece Transação" 		value = "CRBB SJP - Equipe ROI - Cliente questiona lançamento em 00/00. Após receber maiores informações cliente reconheceu a transação. Não é necessário abertura de ROI."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Agendamento" 				value = "CRBB SJP - Equipe ROI - Cliente questiona lançamento futuro para 00/00. Verificado que o agendamento do pagamento ocorreu em 00/00. Agendamento errado. Cliente orientado(a) a cancelar pelo APP. Não é necessário abertura de ROI."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Dúvida" 						value = "CRBB SJP - Equipe ROI - Cliente entrou em contato com dúvida geral sobre a conta corrente. Orientado(a) a entrar em contato com a agência."/>
+		<input type = "checkbox" 	class = "chk-tipologia-Registros-Plataforma chk-tipologia" name = "Deficiência Auditiva" 		value = "CRBB SJP - Equipe ROI - Cliente com dificuldade auditiva, por essa razão a contestação não pode ser aberta pela CRBB, sendo necessária abertura do ROI pela agência."/>
+."/>
+		
+		
+	</div>	
+</html>

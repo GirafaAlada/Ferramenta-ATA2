@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Sofrencia</title>
+		<link rel="stylesheet" href="reset.css">
+		<link rel="stylesheet" type="text/css" href="estiloFerramenta.css">
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<main id="corpo">
+			<div>
+				<div id="titulo">
+					<h1 id="tituloPrincipal">Ferramenta ATA</h1>
+				</div>
+
+				<!-- Os dados do cliente. Testando somente com <div>, <label> e <input>. -->
+				
+				<div style="border: 1px solid white; padding: 2px">
+					<p>Não sei se vou manter esse quadro com os dados do cliente. Não achei muito util pro ATA.</p>
+					<label style="display: inline-block; width: 15%;">Nome:</label>
+					<input type="text" name="nome" style="display: inline-block; width: 79%; margin-bottom: 2px;" >
+					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Agência:</label>
+					<input type="text" name="agencia" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Conta:</label>
+					<input type="text" name="conta" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">CPF:</label>
+					<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">MCI:</label>
+					<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+				</div>
+				
+				<!-- Bloco com checkbox para fazer a IP -->
+				<button id="botaoIp" style="width: 100%;">Identificação Positiva</button>
+				<div id="identificacaoPositiva" class="tiposAtendimento" style="border-bottom: 2px solid white;">
+					<table style="width: 100%; margin-top: 10px;">
+						<tr>
+							<td><input type="checkbox" id="ipNome"><label for="ipNome">Nome completo</label></td>
+							<td><input type="checkbox" id="ipIdade"><label for="ipIdade">Idade</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="ipData"><label for="ipData">Data de nascimento</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="ipCidade"><label for="ipCidade">Cidade onde nasceu</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="ipMaePai"><label for="ipMaePai">Nome completo Pai/Mãe</label></td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- Botões que mostram que tipo de atendimento vai ser -->
+				<div id="botoesTipoAtendimento" style="margin-top: 20px; display: flex; justify-content: center; padding-bottom: 20px; border-bottom: 2px solid white;">
+					<button id="botaoAtendimento" style="width: 100px; margin-right: 5px;">Atendimento</button>
+					<button id="botaoVendas" style="width: 100px; margin-left: 5px;">Vendas</button>
+				</div>
+				
+								
+				<!-- Bloco de frases para o atendimento inicial -->
+				<div id="frasesAtendimento" class="tiposAtendimento" style="width: 100%; margin-top: 20px;">
+					<h2 class="subtitulos">Atendimento</h2>
+					<table style="width: 100%;">
+						<tr>
+							<td><input type="checkbox" id="pediuInformacoes" value="Cliente pediu informações sobre "><label for="pediuInformacoes">Pediu informações</label></td>
+							<td><input type="checkbox" id="falouCdc" value="CDC "><label for="falouCdc">CDC</label></td>
+							<td><input type="checkbox" id="falouIraPensar" value="Irá pensar na proposta."><label for="falouIraPensar">Irá pensar</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="oferta" value="Foi ofertado "><label for="oferta">Foi ofertado</label></td>
+							<td><input type="checkbox" id="falouBrasilprev" value="BrasilPrev "><label for="falouBrasilprev">BrasilPrev</label></td>
+							<td><input type="checkbox" id="falouSemInteresse" value="Não tem interesse."><label for="falouSemInteresse">Sem interesse</label></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox" id="falouCartao" value="cartão "><label for="falouCartao">Cartão</label></td>
+							<td><input type="checkbox" id="falouSemLimite" value="Não possui limite para contratação."><label for="falouSemLimite">Não possui limite</label></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox" id="falouOurocap" value="Ourocap "><label for="falouOurocap">Ourocap</label></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox" id="falouTarifas" value="tarifas "><label for="falouTarifas">Tarifas</label></td>
+						</tr>
+					</table>
+				</div>
+				
+				<!-- Bloco para frases relacionadas a vendas -->
+				<div id="frasesVenda" class="tiposAtendimento" style="width: 100%; margin-top: 20px;">
+					<h2 class="subtitulos">Vendas</h2>
+					<p>Aqui vão os checkbox para fazer as frases usadas em vendas.</p>
+				</div>
+				
+				
+
+				<!-- Bloco de texto para a plataforma -->
+				<div id="blocoDeAtendimento">
+					<textarea id="blocoDeNotas" value="CRBB SJP - ">CRBB SJP - </textarea>	
+					<button>Copiar para plataforma</button>				
+				</div>
+
+
+				
+			</div>
+		</main>
+	</body>
+<html>
+<script type="text/javascript">
+	//Esconde o que tem que sconder
+	$(document).ready(function(){
+		$(".tiposAtendimento").hide();
+	});
+
+	
+	//Botoes que fazem aparecer somente o atendimento que será usado
+	
+	$("#botaoAtendimento").click(function(){
+		if (document.getElementById("frasesAtendimento").style.display != "none"){
+			$("#frasesAtendimento").hide(500);
+		} else {
+			$("#frasesAtendimento").show(500);
+		}
+		$("#frasesVenda").hide(500)
+	});
+	
+	$("#botaoVendas").click(function(){
+		if (document.getElementById("frasesVenda").style.display != "none"){
+			$("#frasesVenda").hide(500);
+		} else {
+			$("#frasesVenda").show(500);
+		}
+		$("#frasesAtendimento").hide(500)
+	});
+	
+	$("#botaoIp").click(function(){
+		if (document.getElementById("identificacaoPositiva").style.display != "none"){
+			$("#identificacaoPositiva").hide(500);
+		} else {
+			$("#identificacaoPositiva").show(500);
+		}
+	});
+</script>

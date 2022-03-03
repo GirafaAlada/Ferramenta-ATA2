@@ -112,6 +112,7 @@
 	//Esconde o que tem que sconder
 	$(document).ready(function(){
 		$(".tiposAtendimento").hide();
+		
 	});
 
 	
@@ -142,4 +143,29 @@
 			$("#identificacaoPositiva").show(500);
 		}
 	});
+
+
+	// Funções que fazem escrever as frases
+	var blocoDeNotas = document.getElementById("blocoDeNotas")
+	console.log(blocoDeNotas.textContent)
+
+
+	let pediuInformacoes = document.getElementById("pediuInformacoes")
+	$("#pediuInformacoes").click(function(){
+		if (pediuInformacoes.checked == true){
+		console.log(pediuInformacoes.value)
+		document.getElementById("blocoDeNotas").textContent += pediuInformacoes.value;
+		} else {
+		//Nada
+		}
+	});
+
+
+
+	if (pediuInformacoes.checked == true) {
+		console.log("check!")
+		
+	} else {
+		// nada
+	};
 </script>

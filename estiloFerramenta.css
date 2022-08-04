@@ -5,7 +5,7 @@
 	font-family: Roboto;
 	font-size: 12px;
 	width: 100%;
-	max-width: 500px;
+	max-width: 550px;
 	background: rgb(255, 255, 255);
 	padding: 10px;
 	margin: 0px;
@@ -33,8 +33,8 @@
 #escolheTipoAtendimento{
 	display: flex;
 	justify-content: center;
-  	border-bottom: 2px solid gray;
-  	padding: 10px;
+	border-bottom: 2px solid gray;
+	padding: 10px;
 }
 
 #blocoDeAtendimento{
@@ -80,5 +80,22 @@ button:hover{
 	color: white;
 	border: none;
 	border-radius: 3px;
-	transition-duration: 0.25s;
+	transition-duration: 0.3s;
+}
+
+.botaoDeleta{
+	background-color: #ec3936;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.botaoDeleta:hover{
+	background-color: #da1815;
+	display: inline-block;
+	transition-duration: 0.3s;
+}
+
+.caixaFraseChatNova{
+	padding: 10px;
+	
 }

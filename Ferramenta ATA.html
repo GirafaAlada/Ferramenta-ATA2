@@ -7,242 +7,342 @@
 		<link rel="stylesheet" href="reset.css">
 		<link rel="stylesheet" type="text/css" href="estiloFerramenta.css">
 		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		<script src = "jquery-3.3.1.min.js"></script>
 	</head>
 	<body id="corpo">
 		<main>
 			<div>
 				<div id="titulo">
 					<h1 id="tituloPrincipal">Ferramenta ATA</h1>
+					<p style="text-align: center;">versão beta com o que funciona</p>
 				</div>
 
-				<!-- Os dados do cliente. Testando somente com <div>, <label> e <input>. -->
-				
-				<div style="display: none; border: 1px solid white; padding: 2px">
-					<p>Não sei se vou manter esse quadro com os dados do cliente. Não achei muito util pro ATA.</p>
-					<label style="display: inline-block; width: 15%;">Nome:</label>
-					<input type="text" name="nome" style="display: inline-block; width: 79%; margin-bottom: 2px;" >
-					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Agência:</label>
-					<input type="text" name="agencia" style="display: inline-block; width: 30%; margin-bottom: 2px;">
-					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Conta:</label>
-					<input type="text" name="conta" style="display: inline-block; width: 30%; margin-bottom: 2px;">
-					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">CPF:</label>
-					<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
-					<label style="display: inline-block; width: 15%; margin-bottom: 2px;">MCI:</label>
-					<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+			<!-- Os dados do cliente. Testando somente com <div>, <label> e <input>. Por enquanto está com display: none. -->
+			<div style="display: none; border: 1px solid white; padding: 2px">
+				<p>Não sei se vou manter esse quadro com os dados do cliente. Não achei muito util pro ATA.</p>
+				<label style="display: inline-block; width: 15%;">Nome:</label>
+				<input type="text" name="nome" style="display: inline-block; width: 79%; margin-bottom: 2px;" >
+				<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Agência:</label>
+				<input type="text" name="agencia" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+				<label style="display: inline-block; width: 15%; margin-bottom: 2px;">Conta:</label>
+				<input type="text" name="conta" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+				<label style="display: inline-block; width: 15%; margin-bottom: 2px;">CPF:</label>
+				<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+				<label style="display: inline-block; width: 15%; margin-bottom: 2px;">MCI:</label>
+				<input type="text" name="cpf" style="display: inline-block; width: 30%; margin-bottom: 2px;">
+			</div>
+			
+			<!-- Bloco com checkbox para fazer a IP. Ainda em construção. Invisível. -->
+			<button id="botaoIp" style="width: 100%; display: none;">Identificação Positiva</button>
+			<div id="identificacaoPositiva" class="tiposAtendimento" style="border-bottom: 2px solid white;">
+				<table style="width: 100%; margin-top: 10px;">
+					<tr>
+						<td><input type="checkbox" id="ipNome" class="checkIp"><label for="ipNome">Nome completo</label></td>
+						<td><input type="checkbox" id="ipIdade" class="checkIp"><label for="ipIdade">Idade</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="ipData" class="checkIp"><label for="ipData">Data de nascimento</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="ipCidade" class="checkIp"><label for="ipCidade">Cidade onde nasceu</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="ipMaePai" class="checkIp"><label for="ipMaePai">Nome completo Pai/Mãe</label></td>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- Frases para o chat -->
+			<button id="botaoFerramentaChat" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">Frases chat</button>
+			<div id="ferramentaChat" class="tiposAtendimento">
+				<div id="listaDeFrasesChat">
 				</div>
-				
-				<!-- Bloco com checkbox para fazer a IP -->
-				<button id="botaoIp" style="width: 100%;">Identificação Positiva</button>
-				<div id="identificacaoPositiva" class="tiposAtendimento" style="border-bottom: 2px solid white;">
-					<table style="width: 100%; margin-top: 10px;">
+				<div id="divDaCriacaoDeNovasFrasesChat">
+					<table style="margin-top: 10px;">
 						<tr>
-							<td><input type="checkbox" id="ipNome" class="checkIp"><label for="ipNome">Nome completo</label></td>
-							<td><input type="checkbox" id="ipIdade" class="checkIp"><label for="ipIdade">Idade</label></td>
+							<td><textarea id="novaFraseChat" placeholder="Escreva uma nova frase para cadastra-la na lista."></textarea></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="ipData" class="checkIp"><label for="ipData">Data de nascimento</label></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="ipCidade" class="checkIp"><label for="ipCidade">Cidade onde nasceu</label></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" id="ipMaePai" class="checkIp"><label for="ipMaePai">Nome completo Pai/Mãe</label></td>
+							<td><button id="botaoCriaFraseChat">Criar</button></td>
 						</tr>
 					</table>
 				</div>
-				
-				<!-- Botões que mostram que tipo de atendimento vai ser -->
-				<div id="botoesTipoAtendimento" style="margin-top: 20px; display: flex; justify-content: center; padding-bottom: 10px; border-bottom: 2px solid gray;">
-					<button id="botaoAtendimento" style="width: 100px; margin-right: 5px;">Atendimento</button>
-					<button id="botaoVendas" style="width: 100px; margin-left: 5px;">Vendas</button>
-					<button id="botaoLimpar" style="width: 100px; margin-left: 5px;">Limpar</button>
-				</div>
-				
-								
-				<!-- Bloco de frases para o atendimento inicial -->
-				<div id="frasesAtendimento" class="tiposAtendimento janelasAtendimento" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
-					<h2 class="subtitulos" style="margin-top: 0px">Atendimento</h2>
-					<table style="width: 100%;">
+			</div>
+			
+<script>
+	//Bloco pra fazer funcionar as frases para o chat
+	let linhaFrases = document.createElement('tr');
+	let caixaBotaoCopia = document.createElement('td');
+	let botaoCopia = document.createElement('button');
+	let caixaFraseChatNova = document.createElement('td');
+	let fraseChatNova = document.createElement('p');
+	let caixaBotaoDeleta = document.createElement('td')
+	let botaoDeleta = document.createElement('button')
+	let tabelaDeFrasesChat = document.getElementById("listaDeFrasesChat");
+	
+	preencheFrases();
+	
+	let fraseChat = ""
+	
+	//Botão que clica e cria 
+	$("#botaoCriaFraseChat").click(function(){
+		fraseChat = $("#novaFraseChat").val();
+		localStorage.setItem(fraseChat, fraseChat);
+		
+		tabelaDeFrasesChat.removeChild(tabelaDeFrasesChat.lastChild);
+		
+		preencheFrases();
+		
+		$("#novaFraseChat").val("")
+	});
+	
+	//Botão que copia as frases
+	$(document).on("click", ".botaoCopia", function(){
+		navigator.clipboard.writeText(this.id);
+		
+	});
+	
+	//Botao que apaga as frases
+	$(document).on("click", ".botaoDeleta", function(){
+		localStorage.removeItem(this.value);
+		
+		tabelaDeFrasesChat.removeChild(tabelaDeFrasesChat.lastChild);
+		
+		preencheFrases();
+	});
+	
+	//Criação das frases que foram salvas
+	//Por algum motivo as frases ficam salvas em ordem aleatória. Não é ordem alfabética nem ordem de chegada... sei la o que acontece.
+	//Tem que estudar um jeito de salvar com uma chave melhor no localStorage.
+	function preencheFrases(){
+		let lugarDeFrasesDoChat = document.createElement('table');
+		lugarDeFrasesDoChat.id = "todasAsFrases"
+		tabelaDeFrasesChat.appendChild(lugarDeFrasesDoChat);
+		
+		let t = localStorage.length;
+		for (let o = 0; o < t; o ++){
+			linhaFrases = document.createElement('tr');
+			
+			caixaBotaoCopia = document.createElement('td');
+			botaoCopia = document.createElement('button');
+			botaoCopia.innerHTML = "Copiar"
+			botaoCopia.className = "botaoCopia"
+			botaoCopia.id = Object.values(localStorage)[o]
+			$("#" + this.id).val(fraseChatNova.innerHTML)
+			caixaBotaoCopia.appendChild(botaoCopia);
+			
+			caixaFraseChatNova = document.createElement('td');
+			caixaFraseChatNova.className = "caixaFraseChatNova"
+			fraseChatNova = document.createElement('p');
+			fraseChatNova.innerHTML = Object.values(localStorage)[o];
+			caixaFraseChatNova.appendChild(fraseChatNova);
+			
+			caixaBotaoDeleta = document.createElement('td');
+			botaoDeleta = document.createElement('button')
+			botaoDeleta.innerHTML = "x"
+			botaoDeleta.className = "botaoDeleta"
+			botaoDeleta.setAttribute('value', fraseChatNova.innerHTML)
+			caixaBotaoDeleta.appendChild(botaoDeleta)
+			
+			linhaFrases.appendChild(caixaBotaoCopia);
+			linhaFrases.appendChild(caixaFraseChatNova);
+			linhaFrases.appendChild(caixaBotaoDeleta);
+			
+			lugarDeFrasesDoChat.appendChild(linhaFrases);
+		};
+	};
+</script>
+			
+			
+			<!-- Botões que mostram que tipo de atendimento vai ser -->
+			<div id="botoesTipoAtendimento" style="margin-top: 20px; display: flex; justify-content: center; padding-bottom: 10px; border-bottom: 2px solid gray;">
+				<button id="botaoAtendimento" style="width: 100px; margin-right: 5px;">Atendimento</button>
+				<button id="botaoVendas" style="width: 100px; margin-left: 5px;">Vendas</button>
+				<button id="botaoLimpar" style="width: 100px; margin-left: 5px;">Limpar</button>
+			</div>
+			
+			<!-- Bloco de frases para o atendimento inicial -->
+			<div id="frasesAtendimento" class="tiposAtendimento janelasAtendimento" style="width: 100%; margin-top: 10px; margin-bottom: 10px;">
+				<h2 class="subtitulos" style="margin-top: 0px">Atendimento</h2>
+				<table style="width: 100%;">
+					<tr>
+						<td><input type="checkbox" id="pediuInformacoes" class="frases inicioFrase" value="Cliente pediu informações sobre"><label for="pediuInformacoes">Pediu informações</label></td>
+						<td><input type="checkbox" id="meio1" class="frases meioFrase" value="CDC"><label for="meio1">CDC</label></td>
+						<td><input type="checkbox" id="falouIraPensar" class="frases finalFrase" value="Irá pensar na proposta"><label for="falouIraPensar">Irá pensar</label></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox" id="oferta" class="frases inicioFrase" value="Foi ofertado"><label for="oferta">Foi ofertado</label></td>
+						<td><input type="checkbox" id="meio2" class="frases meioFrase" value="BrasilPrev"><label for="meio2">BrasilPrev</label></td>
+						<td><input type="checkbox" id="falouSemInteresse" class="frases finalFrase" value="Não tem interesse"><label for="falouSemInteresse">Sem interesse</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio3" class="frases meioFrase" value="cartão"><label for="meio3">Cartão</label></td>
+						<td><input type="checkbox" id="falouSemLimite" class="frases finalFrase" value="Não possui limite para contratação."><label for="falouSemLimite">Não possui limite</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio4" class="frases meioFrase" value="Ourocap"><label for="meio4">Ourocap</label></td>
+						<td><input type="checkbox" id="falouCanalCorreto" class="frases finalFrase" value="Foi transferido para o setor responsável"><label for="falouCanalCorreto">Transferido</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio5" class="frases meioFrase" value="tarifas"><label for="meio5">Tarifas</label></td>
+						<td><input type="checkbox" id="falouAgencia" class="frases finalFrase" value="Foi orientado a comparecer em uma agência"><label for="falouAgencia">Agência</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio6" class="frases meioFrase" value="PASEP"><label for="meio6">PASEP</label></td>
+						<td><input type="checkbox" id="falouEsclarecida" class="frases finalFrase" value="Dúvida esclarecida"><label for="falouEsclarecida">Dúvida esclarecida</label></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio7" class="frases meioFrase" value="cobrança"><label for="meio7">Cobrança</label></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="checkbox" id="meio8" class="frases meioFrase" value="cheque especial"><label for="meio8">Ch. Especial</label></td>
+						<td></td>
+					</tr>
+			</table>
+			</div>
+			
+			<!-- Bloco para frases relacionadas a vendas -->
+			<div id="frasesVenda" class="tiposAtendimento">
+				<div class="janelasAtendimento" style="width: 100%; margin-top: 10px; margin-bottom: 10px; padding-bottom: 10px; padding-top: 0px.">
+					<h2 class="subtitulos" style="margin-top: 0px;">Vendas</h2>
+					<table>
 						<tr>
-							<td><input type="checkbox" id="pediuInformacoes" class="frases inicioFrase" value="Cliente pediu informações sobre"><label for="pediuInformacoes">Pediu informações</label></td>
-							<td><input type="checkbox" id="meio1" class="frases meioFrase" value="CDC"><label for="meio1">CDC</label></td>
-							<td><input type="checkbox" id="falouIraPensar" class="frases finalFrase" value="Irá pensar na proposta"><label for="falouIraPensar">Irá pensar</label></td>
+							<td><input type="checkbox" id="vendaInicio1" class="frasesVendas inicioFraseVenda vendaInicio1" value="Cliente contratou"><label for="vendaInicio1">Contratou</label></td>
+							<td><input type="checkbox" id="meioVenda1" class="frasesVendas meioFraseVenda meioVenda1" value="CDC"><label for="meioVenda1">CDC</label></td>
+							<td><input type="checkbox" id="vendaFinal1" class="frasesVendas finalFraseVenda vendaFinal1" value="Irá confirmar via duplo sim"><label for="vendaFinal1">Duplo sim</label></td>
 						</tr>
 						<tr>
-							<td><input type="checkbox" id="oferta" class="frases inicioFrase" value="Foi ofertado"><label for="oferta">Foi ofertado</label></td>
-							<td><input type="checkbox" id="meio2" class="frases meioFrase" value="BrasilPrev"><label for="meio2">BrasilPrev</label></td>
-							<td><input type="checkbox" id="falouSemInteresse" class="frases finalFrase" value="Não tem interesse"><label for="falouSemInteresse">Sem interesse</label></td>
+							<td><input type="checkbox" id="vendaInicio2" class="frasesVendas inicioFraseVenda vendaInicio2" value="Cliente simulou"><label for="vendaInicio2">Simulou</label></td>
+							<td><input type="checkbox" id="meioVenda2" class="frasesVendas meioFraseVenda meioVenda2" value="Seguro de vida"><label for="meioVenda2">Seguro de vida</label></td></td>
+							<td><input type="checkbox" id="vendaFinal2" class="frasesVendas finalFraseVenda vendaFinal2" value="Pediu para retornar o contato em outra data"><label for="vendaFinal2">Reagendou contato</label></td>
+						</tr>
+						<tr>
+							<td><input type="checkbox" id="vendaInicio3" class="frasesVendas inicioFraseVenda vendaInicio3" value="Cliente demonstrou interesse em"><label>Demonstrou interesse</label></td>
+							<td><input type="checkbox" id="meioVenda3" class="frasesVendas meioFraseVenda meioVenda3" value="Brasil Prev"><label for="meioVenda3">Brasil Prev</label></td>
+							<td><input type="checkbox" id="vendaFinal3" class="frasesVendas finalFraseVenda vendaFinal3" value="Pediu para retornar o contato em outra data"><label for="vendaFinal3">Reagendou contato</label></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="checkbox" id="meio3" class="frases meioFrase" value="cartão"><label for="meio3">Cartão</label></td>
-							<td><input type="checkbox" id="falouSemLimite" class="frases finalFrase" value="Não possui limite para contratação."><label for="falouSemLimite">Não possui limite</label></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" id="meio4" class="frases meioFrase" value="Ourocap"><label for="meio4">Ourocap</label></td>
-							<td><input type="checkbox" id="falouCanalCorreto" class="frases finalFrase" value="Foi transferido para o setor responsável"><label for="falouCanalCorreto">Transferido</label></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" id="meio5" class="frases meioFrase" value="tarifas"><label for="meio5">Tarifas</label></td>
-							<td><input type="checkbox" id="falouAgencia" class="frases finalFrase" value="Foi orientado a comparecer em uma agência"><label for="falouAgencia">Agência</label></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" id="meio6" class="frases meioFrase" value="PASEP"><label for="meio6">PASEP</label></td>
-							<td><input type="checkbox" id="falouEsclarecida" class="frases finalFrase" value="Dúvida esclarecida"><label for="falouEsclarecida">Dúvida esclarecida</label></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td><input type="checkbox" id="meio7" class="frases meioFrase" value="cobrança"><label for="meio7">Cobrança</label></td>
+							<td><input type="checkbox" id="meioVenda4" class="frasesVendas meioFraseVenda meioVenda4" value="Ourocap"><label for="meioVenda4">Ourocap</label></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td></td>
-							<td><input type="checkbox" id="meio8" class="frases meioFrase" value="cheque especial"><label for="meio8">Ch. Especial</label></td>
+							<td><input type="checkbox" id="meioVenda5" class="frasesVendas meioFraseVenda meioVenda5" value="Cartão"><label for="meioVenda5">Cartão</label></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox" id="meioVenda6" class="frasesVendas meioFraseVenda meioVenda6" value="Pacote de serviços"><label for="meioVenda6">Pacote de serviços</label></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="checkbox" id="meioVenda7" class="frasesVendas meioFraseVenda meioVenda7" value="Clube de benefícios"><label for="meioVenda7">Clube de benefícios</label></td>
 							<td></td>
 						</tr>
 					</table>
 				</div>
-				
-				<!-- Bloco para frases relacionadas a vendas -->
-				<div id="frasesVenda" class="tiposAtendimento">
-					<div class="janelasAtendimento" style="width: 100%; margin-top: 10px; margin-bottom: 10px; padding-bottom: 10px; padding-top: 0px.">
-						<h2 class="subtitulos" style="margin-top: 0px;">Vendas</h2>
+				<!-- Aqui vão informações das vendas para criação de planilha do excel.-->
+				<div id="detalhesVendas" class="janelasAtendimento" style="margin-top: 10px; margin-bottom: 10px; width: 100%; display: none;">
+					<h2 class="subtitulos" style="margin-top: 0px;">Detalhes das vendas</h2>
+					<div id="detalhesCdc" style="border-bottom: 1px solid gray;">
 						<table>
 							<tr>
-								<td><input type="checkbox" id="vendaInicio1" class="frasesVendas inicioFraseVenda vendaInicio1" value="Cliente contratou"><label for="vendaInicio1">Contratou</label></td>
-								<td><input type="checkbox" id="meioVenda1" class="frasesVendas meioFraseVenda meioVenda1" value="CDC"><label for="meioVenda1">CDC</label></td>
-								<td><input type="checkbox" id="vendaFinal1" class="frasesVendas finalFraseVenda vendaFinal1" value="Irá confirmar via duplo sim"><label for="vendaFinal1">Duplo sim</label></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="vendaInicio2" class="frasesVendas inicioFraseVenda vendaInicio2" value="Cliente simulou"><label for="vendaInicio2">Simulou</label></td>
-								<td><input type="checkbox" id="meioVenda2" class="frasesVendas meioFraseVenda meioVenda2" value="Seguro de vida"><label for="meioVenda2">Seguro de vida</label></td></td>
-								<td><input type="checkbox" id="vendaFinal2" class="frasesVendas finalFraseVenda vendaFinal2" value="Pediu para retornar o contato em outra data"><label for="vendaFinal2">Reagendou contato</label></td>
-							</tr>
-							<tr>
-								<td><input type="checkbox" id="vendaInicio3" class="frasesVendas inicioFraseVenda vendaInicio3" value="Cliente demonstrou interesse em"><label>Demonstrou interesse</label></td>
-								<td><input type="checkbox" id="meioVenda3" class="frasesVendas meioFraseVenda meioVenda3" value="Brasil Prev"><label for="meioVenda3">Brasil Prev</label></td>
-								<td><input type="checkbox" id="vendaFinal3" class="frasesVendas finalFraseVenda vendaFinal3" value="Pediu para retornar o contato em outra data"><label for="vendaFinal3">Reagendou contato</label></td>
+								<td><label for="valorCdc">Valor do crédito:</label></td>
+								<td><input type="text" id="valorCdc"></td>
+								<td><label for="valorSeguroCdc">Valor do seguro:</label></td>
+								<td><input type="text" id="valorSeguroCdc"></td>
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="checkbox" id="meioVenda4" class="frasesVendas meioFraseVenda meioVenda4" value="Ourocap"><label for="meioVenda4">Ourocap</label></td>
 								<td></td>
-							</tr>
-							<tr>
 								<td></td>
-								<td><input type="checkbox" id="meioVenda5" class="frasesVendas meioFraseVenda meioVenda5" value="Cartão"><label for="meioVenda5">Cartão</label></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><input type="checkbox" id="meioVenda6" class="frasesVendas meioFraseVenda meioVenda6" value="Pacote de serviços"><label for="meioVenda6">Pacote de serviços</label></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td></td>
-								<td><input type="checkbox" id="meioVenda7" class="frasesVendas meioFraseVenda meioVenda7" value="Clube de benefícios"><label for="meioVenda7">Clube de benefícios</label></td>
-								<td></td>
+								<td><input type="checkbox" name="seguroCdc" id="seguroSlip"><label for="seguroSlip">Slip</label><input type="checkbox" name="seguroCdc" id="seguroEstoque"><label for="seguroEstoque">Estoque</label></td>
 							</tr>
 						</table>
 					</div>
-					<div id="detalhesVendas" class="janelasAtendimento" style="margin-top: 10px; margin-bottom: 10px; width: 100%;">
-						<h2 class="subtitulos" style="margin-top: 0px;">Detalhes das vendas</h2>
-						<div id="detalhesCdc" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label for="valorCdc">Valor do crédito:</label></td>
-									<td><input type="text" id="valorCdc"></td>
-									<td><label for="valorSeguroCdc">Valor do seguro:</label></td>
-									<td><input type="text" id="valorSeguroCdc"></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td><input type="checkbox" name="seguroCdc" id="seguroSlip"><label for="seguroSlip">Slip</label><input type="checkbox" name="seguroCdc" id="seguroEstoque"><label for="seguroEstoque">Estoque</label></td>
-								</tr>
-							</table>
-						</div>
-						<div id="detalhesSeguros" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label>Valor da parcela do seguro:</label></td>
-									<td><input type="text" id="valorSeguro"></input></td>
-								</tr>
-								<tr>
-									<td></td>
-									<td><input type="checkbox" name="seguroVida" id="seguroMensal"><label for="seguroMensal">Mensal</label><input type="checkbox" name="seguroVida" id="seguroAnual"><label for="seguroAnual">Anual</label></td>
-								</tr>
-							</table>
-						</div>
-						<div id="detalhesBrasilprev" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label for="valorBrasilprev">Valor do aporte:</label></td>
-									<td><input type="text" id="valorBrasilprev"></td>
-									<td><input type="checkbox" name="previdencia" id="aporteMensal"><label for="aporteMensal">Mensal</label><input type="checkbox" name="previdencia" id="aporteAnual"><label for="aporteAnual">Anual</label></td>
-								</tr>
-							</table>
-						</div>
-						<div id="detalhesOurocap" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label for="valorOurocap">Valor contratado:</label></td>
-									<td><input type="text" id="valorOurocap"></td>
-									<td><input type="checkbox" id="pu"><label for="pu">P.U.</label></td>
-									<td><input type="checkbox" id="pm"><label for="pu">P.M.</label></</td>
-								</tr>
-							</table>
-						</div>
-						<div id="detalhesCartao" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label for="valorCartao">Limite:</label></td>
-									<td><input type="text" id="valorCartao"></td>
-									<td><input type="checkbox" id="cartaoElo"><label for="cartaoElo">Elo</label></td>
-									<td><input type="checkbox" id="cartaoVisa"><label for="cartaoVisa">Visa</label></td>
-									<td><input type="checkbox" id="cartaoMaster"><label for="cartaoMaster">Master</label></td>
-								</tr>
-							</table>
-						</div>
-						<div id="detalhesPacoteClube" style="border-bottom: 1px solid gray;">
-							<table>
-								<tr>
-									<td><label for="valorPacote">Valor:</label></td>
-									<td><input type="text" id="valorPacote"></td>
-									<td><input type="checkbox" id="pacoteServicos"><label for="pacoteServicos">Pacote de serviços</label></td>
-									<td><input type="checkbox" id="clube"><label for="clube">Clube de benefícios</label></td>
-								</tr>
-							</table>
-						</div>
-						<div>
-							<button style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px; padding-left: 10px; padding-right: 10px;">Excel</button>
-						</div>
+					<div id="detalhesSeguros" style="border-bottom: 1px solid gray;">
+						<table>
+							<tr>
+								<td><label>Valor da parcela do seguro:</label></td>
+								<td><input type="text" id="valorSeguro"></input></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><input type="checkbox" name="seguroVida" id="seguroMensal"><label for="seguroMensal">Mensal</label><input type="checkbox" name="seguroVida" id="seguroAnual"><label for="seguroAnual">Anual</label></td>
+							</tr>
+						</table>
+					</div>
+					<div id="detalhesBrasilprev" style="border-bottom: 1px solid gray;">
+						<table>
+							<tr>
+								<td><label for="valorBrasilprev">Valor do aporte:</label></td>
+								<td><input type="text" id="valorBrasilprev"></td>
+								<td><input type="checkbox" name="previdencia" id="aporteMensal"><label for="aporteMensal">Mensal</label><input type="checkbox" name="previdencia" id="aporteAnual"><label for="aporteAnual">Anual</label></td>
+							</tr>
+						</table>
+					</div>
+					<div id="detalhesOurocap" style="border-bottom: 1px solid gray;">
+						<table>
+							<tr>
+								<td><label for="valorOurocap">Valor contratado:</label></td>
+								<td><input type="text" id="valorOurocap"></td>
+								<td><input type="checkbox" id="pu"><label for="pu">P.U.</label></td>
+								<td><input type="checkbox" id="pm"><label for="pu">P.M.</label></</td>
+							</tr>
+						</table>
+					</div>
+					<div id="detalhesCartao" style="border-bottom: 1px solid gray;">
+						<table>
+							<tr>
+								<td><label for="valorCartao">Limite:</label></td>
+								<td><input type="text" id="valorCartao"></td>
+								<td><input type="checkbox" id="cartaoElo"><label for="cartaoElo">Elo</label></td>
+								<td><input type="checkbox" id="cartaoVisa"><label for="cartaoVisa">Visa</label></td>
+								<td><input type="checkbox" id="cartaoMaster"><label for="cartaoMaster">Master</label></td>
+							</tr>
+						</table>
+					</div>
+					<div id="detalhesPacoteClube" style="border-bottom: 1px solid gray;">
+						<table>
+							<tr>
+								<td><label for="valorPacote">Valor:</label></td>
+								<td><input type="text" id="valorPacote"></td>
+								<td><input type="checkbox" id="pacoteServicos"><label for="pacoteServicos">Pacote de serviços</label></td>
+								<td><input type="checkbox" id="clube"><label for="clube">Clube de benefícios</label></td>
+							</tr>
+						</table>
+					</div>
+					<div>
+						<button style="margin-left: 10px; margin-bottom: 10px; margin-top: 10px; padding-left: 10px; padding-right: 10px;">Excel</button>
 					</div>
 				</div>
-				
+			</div>
 
-				<!-- Bloco de texto para a plataforma -->
-				<div id="blocoDeAtendimento">
-					<div style="background: rgb(236, 238, 239); width: 40%; padding-bottom: 10px; padding-top: 0px; margin-bottom: 10px;">
-						<div style="background: rgb(71, 92, 98);">
-							<h3 style="text-align: center; color: white; padding: 5px; margin-top: 0px;">Skill</h3>
-						</div>
-						<input type="radio" name="skill" id="registroAta" class="legendaRegistros" value="CRBB SJP ATA - " style="width: 6%;"><label for="registroAta" style="display: inline-block; width: 80%;">ATA</label>
-						<input type="radio" name="skill" id="registroUso" class="legendaRegistros" value="CRBB SJP Consultoria em uso responsável de crédito - " style="width: 6%;"><label for="registroUso" style="display: inline-block; width: 80%;">Uso responsável do crédito</label>
-						<input type="radio" name="skill" id="registroTb" class="legendaRegistros" value="CRBB SJP Transações Bancárias - " style="width: 6%;"><label for="registroTb" style="display: inline-block; width: 80%;">TB</label>
-						<input type="radio" name="skill" id="registroConsultoria" class="legendaRegistros" value="CRBB SJP Consultoria de investimentos - " style="width: 6%;"><label for="registroConsultoria" style="display: inline-block; width: 80%;">Consultoria de investimentos</label>
+			<!-- Bloco de texto para a plataforma -->
+			<div id="blocoDeAtendimento">
+				<div style="background: rgb(236, 238, 239); width: 40%; padding-bottom: 10px; padding-top: 0px; margin-bottom: 10px;">
+					<div style="background: rgb(71, 92, 98);">
+					<h3 style="text-align: center; color: white; padding: 5px; margin-top: 0px;">Skill</h3>
 					</div>
-					<textarea id="blocoDeNotas"></textarea>	
-					<button id="botaoQueCopia" style="margin-top: 10px;">Copiar texto para plataforma</button>				
+					<input type="radio" name="skill" id="registroAta" class="legendaRegistros" value="CRBB SJP ATA - " style="width: 6%;"><label for="registroAta" style="display: inline-block; width: 80%;">ATA</label>
+					<input type="radio" name="skill" id="registroUso" class="legendaRegistros" value="CRBB SJP Consultoria em uso responsável de crédito - " style="width: 6%;"><label for="registroUso" style="display: inline-block; width: 80%;">Uso responsável do crédito</label>
+					<input type="radio" name="skill" id="registroTb" class="legendaRegistros" value="CRBB SJP Transações Bancárias - " style="width: 6%;"><label for="registroTb" style="display: inline-block; width: 80%;">TB</label>
+					<input type="radio" name="skill" id="registroConsultoria" class="legendaRegistros" value="CRBB SJP Consultoria de investimentos - " style="width: 6%;"><label for="registroConsultoria" style="display: inline-block; width: 80%;">Consultoria de investimentos</label>
 				</div>
+				<textarea id="blocoDeNotas"></textarea> 
+				<button id="botaoQueCopia" style="margin-top: 10px;">Copiar texto para plataforma</button> 
+			</div>
 
 
-				
 			</div>
 		</main>
 	</body>
@@ -250,7 +350,6 @@
 
 <script type="text/javascript">
 	limpaTudo();
-	
 	// LIMPA O FORMULÁRIO NO CARREGAMENTO DA PÁGINA
 	function limpaTudo(){
 		$("#blocoDeNotas").val("");
@@ -259,80 +358,79 @@
 		$(".legendaRegistros").prop("checked", false);
 		$(".checkIp").prop("checked", false);
 		$(".tiposAtendimento").hide(100);
-		
 	};
 	
 // --------------------------------------------------------------------------------------------------------------------------------
-	
+
 	// Botão que limpa as informações da ferramenta.
-	
 	$("#botaoLimpar").click(limpaTudo)
 
 // --------------------------------------------------------------------------------------------------------------------------------
 	
 	// ESCONDE AS DIVS NO CARREGAMENTO DA PÁGINA
-	
 	$(document).ready(limpaTudo);
 
 // --------------------------------------------------------------------------------------------------------------------------------
+
 	// BOTÕES QUE FAZEM APARECER SOMENTE O TIPO DE ATENDIMENTO SELECIONADO
-	
 	$("#botaoAtendimento").click(function(){
 		if (document.getElementById("frasesAtendimento").style.display != "none"){
-			$("#frasesAtendimento").hide(250);
+		$("#frasesAtendimento").hide(250);
 		} else {
-			$("#frasesAtendimento").show(250);
+		$("#frasesAtendimento").show(250);
 		}
 		$("#frasesVenda").hide(250);
-	});
-	
+		});
+		
 	$("#botaoVendas").click(function(){
 		if (document.getElementById("frasesVenda").style.display != "none"){
-			$("#frasesVenda").hide(250);
+		$("#frasesVenda").hide(250);
 		} else {
-			$("#frasesVenda").show(250);
+		$("#frasesVenda").show(250);
 		}
 		$("#frasesAtendimento").hide(250)
-	});
-	
+		});
+		
 	$("#botaoIp").click(function(){
 		if (document.getElementById("identificacaoPositiva").style.display != "none"){
-			$("#identificacaoPositiva").hide(250);
+		$("#identificacaoPositiva").hide(250);
 		} else {
-			$("#identificacaoPositiva").show(250);
+		$("#identificacaoPositiva").show(250);
+		}
+		});
+		
+	$("#botaoFerramentaChat").click(function(){
+		if (document.getElementById("ferramentaChat").style.display != "none"){
+			$("#ferramentaChat").hide(250);
+		} else {
+			$("#ferramentaChat").show(250);
 		}
 	});
 // --------------------------------------------------------------------------------------------------------------------------------
 
 	// FUNÇÕES QUE ESCREVEM O TEXTO DO REGISTRO DA PLATAFORMA
-	
 	var texto = ""
 	let totalCaixas = 0
 	let caixas = 0
-	
 	// Aqui escreve o inicio do texto de registro na plataforma
-  	$(document).on("click", ".inicioFrase", function(){
+	$(document).on("click", ".inicioFrase", function(){
 		texto = $("#blocoDeNotas").val();
-		
 		if ($(this).prop("checked")){
 			if ($("#blocoDeNotas").val() != ""){
-				texto += ". " + $('#' + this.id).val();
+					texto += ". " + $('#' + this.id).val();
 			} else {
-				texto += $('#' + this.id).val();
+					texto += $('#' + this.id).val();
 			};
 			console.log("check inicio da frase!");
 			$("#blocoDeNotas").val(texto);
 			// Desmarca os checkbox do meio do texto.
 			$(".meioFrase").prop("checked", false);
-			
-			
 		};
 	});
 	
 	// Aqui escreve o meio do texto.
 	$(document).on("click", ".meioFrase", function(){
 		texto = $("#blocoDeNotas").val();
-		
 		if ($(this).prop("checked")){
 			console.log("check meio da frase!");
 			
@@ -343,9 +441,9 @@
 				if ($("#meio" + c).prop("checked")){
 					caixas = caixas + 1
 				};
-				
 			};
 			console.log(caixas)
+			
 			// Caso apenas 1 checkbox seja marcado.
 			if (caixas == 1){
 				texto += " " + $('#' + this.id).val();
@@ -353,50 +451,41 @@
 				$("#blocoDeNotas").val(texto);
 			} else {
 				// Caso haja 2 checkbox marcados.
-				if (caixas == 2){
-					texto += " e " + $('#' + this.id).val();
-					console.log(texto);
-					$("#blocoDeNotas").val(texto);
-				} else {
-					// Caso haja mais de 2 checkbox marcados.
-					if (caixas > 2){
-						let indiceE = 0
-						texto = $("#blocoDeNotas").val();
-						console.log("O texto, que agora tem mais de dois checkbox é:", texto)
-						const text = texto
-						let splitText = text.split(" ");
-						console.log("Aqui a lista de palavras antes de mexer", splitText);
-						
-						for (i = 0; i < splitText.length ; i++){
-							console.log(splitText[(splitText.length - 1) - i]);
-							if (splitText[(splitText.length - 1) - i] == "e"){
-								console.log("Achei!!");
-								indiceE = (splitText.length - 1) - i
-								
-								break
-							};
-							
-							};
-						console.log("Indice da letra 'e' ->", indiceE);
-						
-						splitText.splice(indiceE - 1, 1, splitText[indiceE - 1] + ",");
-						splitText.splice(indiceE, 1);
-						
-						console.log("Agora a nova lista é", splitText);
-						texto = splitText.join(" ");
+					if (caixas == 2){
 						texto += " e " + $('#' + this.id).val();
-
+						console.log(texto);
 						$("#blocoDeNotas").val(texto);
-						};
+					} else {
+						// Caso haja mais de 2 checkbox marcados.
+						if (caixas > 2){
+							let indiceE = 0
+							texto = $("#blocoDeNotas").val();
+							console.log("O texto, que agora tem mais de dois checkbox é:", texto)
+							const text = texto
+							let splitText = text.split(" ");
+							console.log("Aqui a lista de palavras antes de mexer", splitText);
+							for (i = 0; i < splitText.length ; i++){
+								console.log(splitText[(splitText.length - 1) - i]);
+								if (splitText[(splitText.length - 1) - i] == "e"){
+									console.log("Achei!!");
+									indiceE = (splitText.length - 1) - i
+									break
+							};
+							};
+							console.log("Indice da letra 'e' ->", indiceE);
+							splitText.splice(indiceE - 1, 1, splitText[indiceE - 1] + ",");
+							splitText.splice(indiceE, 1);
+							console.log("Agora a nova lista é", splitText);
+							texto = splitText.join(" ");
+							texto += " e " + $('#' + this.id).val();
+
+							$("#blocoDeNotas").val(texto);
 					};
 				};
-				
 			};
-	
+		};
 	});
-	
 	// Agora finalmente a parte final do texto para registro.
-	
 	$(document).on("click", ".finalFrase", function(){
 		// Coloca o ponto final no periodo anterior e escreve a conclusão do texto.
 		if ($(this).prop("checked")){
@@ -405,10 +494,8 @@
 			$("#blocoDeNotas").val(texto);
 		};
 	});
-	
 // --------------------------------------------------------------------------------------------------------------------------------
 	// ESCRITA DO REGISTRO DAS VENDAS
-	
 	$(document).on("click", ".inicioFraseVenda", function(){
 		if ($(this).prop("checked")){
 			if ($("#blocoDeNotas").val() != ""){
@@ -423,55 +510,49 @@
 	
 	$(document).on("click", ".meioFraseVenda", function(){
 		texto = $("#blocoDeNotas").val();
-		
-		if ($(this).prop("checked")){
-			
-			totalCaixas = 7
-			caixas = 0
-			for (let c = 0; c <= totalCaixas; c++){
-				if ($("#meioVenda" + c).prop("checked")){
+			if ($(this).prop("checked")){
+				totalCaixas = 7
+				caixas = 0
+				for (let c = 0; c <= totalCaixas; c++){
+					if ($("#meioVenda" + c).prop("checked")){
 					caixas = caixas + 1
+					};
 				};
-			};
-			if (caixas == 1){
-				texto += " " + $('#' + this.id).val();
-				$("#blocoDeNotas").val(texto);
-			} else {
-				if (caixas == 2){
-					texto += " e " + $('#' + this.id).val();
+				if (caixas == 1){
+					texto += " " + $('#' + this.id).val();
 					$("#blocoDeNotas").val(texto);
 				} else {
-					if (caixas > 2){
-						let indiceE = 0
-						texto = $("#blocoDeNotas").val();
-						const text = texto
-						let splitText = text.split(" ");
-						
-						for (i = 0; i < splitText.length ; i++){
-							if (splitText[(splitText.length - 1) - i] == "e"){
-								indiceE = (splitText.length - 1) - i
-								break
-								};
-							};
-						
-						splitText.splice(indiceE - 1, 1, splitText[indiceE - 1] + ",");
-						splitText.splice(indiceE, 1);
-						texto = splitText.join(" ");
+					if (caixas == 2){
 						texto += " e " + $('#' + this.id).val();
-
 						$("#blocoDeNotas").val(texto);
+					} else {
+						if (caixas > 2){
+							let indiceE = 0
+							texto = $("#blocoDeNotas").val();
+							const text = texto
+							let splitText = text.split(" ");
+							for (i = 0; i < splitText.length ; i++){
+								if (splitText[(splitText.length - 1) - i] == "e"){
+									indiceE = (splitText.length - 1) - i
+									break
+									};
+								};
+							splitText.splice(indiceE - 1, 1, splitText[indiceE - 1] + ",");
+							splitText.splice(indiceE, 1);
+							texto = splitText.join(" ");
+							texto += " e " + $('#' + this.id).val();
+
+							$("#blocoDeNotas").val(texto);
+							};
 						};
 					};
 				};
-			};
-			
-			// Faz aparecer os detalhes das vendas
-				if ($(this).id == "#meioVenda1") {
-					$("#detalhesCdc").show(250);
-					console.log("aparecer");
-				};
+				// Faz aparecer os detalhes das vendas
+					if ($(this).id == "#meioVenda1") {
+						$("#detalhesCdc").show(250);
+						console.log("aparecer");
+					};
 	});
-	
 	$(document).on("click", ".finalFraseVenda", function(){
 		if ($(this).prop("checked")){
 			texto = $("#blocoDeNotas").val();
@@ -479,31 +560,31 @@
 			$("#blocoDeNotas").val(texto);
 		};
 	});
-	
-// --------------------------------------------------------------------------------------------------------------------------------	
-	
-	
+
+// -------------------------------------------------------------------------------------------------------------------------------- 
+
 	// BOTÃO QUE COPIA O TEXTO NO BLOCO DE NOTAS PARA COLAR NA PLATAFORMA.
 	let atendimento = ""
 	$("#botaoQueCopia").click(function(){
 		if ($("#registroAta").prop("checked")){
 			atendimento = $("#registroAta").val();
 		} else {
-			if ($("#registroUso").prop("checked")){
-				atendimento = $("#registroUso").val();
-			} else {
-				if ($("#registroTb").prop("checked")){
-					atendimento = $("#registroTb").val();
+				if ($("#registroUso").prop("checked")){
+					atendimento = $("#registroUso").val();
 				} else {
-					if ($("#registroConsultoria").prop("checked")){
-						atendimento = $("#registroConsultoria").val();
+					if ($("#registroTb").prop("checked")){
+						atendimento = $("#registroTb").val();
 					} else {
-						atendimento = "CRBB SJP - "
+						if ($("#registroConsultoria").prop("checked")){
+							atendimento = $("#registroConsultoria").val();
+						} else {
+							atendimento = "CRBB SJP - "
 					};
 				};
 			};
 		};
 		navigator.clipboard.writeText(atendimento + $("#blocoDeNotas").val());
 	});
+	
 	
 </script>
